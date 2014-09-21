@@ -21,11 +21,10 @@ public class RetirementCalculatorLayoutController {
         @FXML private TextField retirementAgeField;
         @FXML private TextField capGainsTxRateField;
         @FXML private TextField preTaxBalanceField;
-        @FXML private TextField postTaxBalanceField
+        @FXML private TextField postTaxBalanceField;
         @FXML private TextField preTaxContField;
         @FXML private TextField postTaxContField;
-        @FXML private TextField rateOfReturnField; 
-        @FXML private TextField
+        @FXML private TextField rateOfReturnField;
         
         
          
