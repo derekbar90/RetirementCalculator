@@ -16,6 +16,7 @@ public class RetirementCalculatorLayoutController {
         @FXML private final String string = "This";
         @FXML private final String new_string = " is working!";
         
+        //Text input variables
         @FXML private TextField ageField;
         @FXML private TextField incomeTaxRateField;
         @FXML private TextField retirementAgeField;
@@ -25,11 +26,9 @@ public class RetirementCalculatorLayoutController {
         @FXML private TextField preTaxContField;
         @FXML private TextField postTaxContField;
         @FXML private TextField rateOfReturnField;
-        
-        
-         
-         
-        @FXML protected void ageFieldGetter(ActionEvent event) {
+
+        //
+        @FXML protected void calculate(ActionEvent event) {
             
             calculationWindow.setText(string);
             calculationWindow.appendText(new_string);
