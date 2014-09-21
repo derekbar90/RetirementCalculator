@@ -27,7 +27,7 @@ public class RetirementCalculatorLayoutController {
         @FXML private TextField postTaxContField;
         @FXML private TextField rateOfReturnField;
 
-        //
+        
         @FXML protected void calculate(ActionEvent event) {
             
             calculationWindow.setText(string);
