@@ -14,12 +14,14 @@ public class Year {
     private final int year;
     private final int preTaxAmount;
     private final int postTaxAmount;
+    private final int total;
     
-    public Year(int year, int preTaxAmount, int postTaxAmount){
+    public Year(int year, int preTaxAmount, int postTaxAmount, int total){
     
         this.year = year;
         this.preTaxAmount = preTaxAmount;
         this.postTaxAmount = postTaxAmount;
+        this.total = total;
     
     }
     
