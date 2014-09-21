@@ -23,7 +23,6 @@ public class RetirementCalculatorDriver extends Application {
         stage.setTitle("Retirement Calc");
         stage.setScene(scene);
         stage.show();
-    
     }
 
     /**
