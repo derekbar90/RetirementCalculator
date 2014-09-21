@@ -13,9 +13,8 @@ import javafx.scene.control.TextField;
  */
 public class RetirementCalculatorLayoutController {
         
+        //TextArea Variable    
         @FXML private TextArea calculationWindow;
-        @FXML private final String string = "This";
-        @FXML private final String new_string = " is working!";
         
         //Text input variables
         @FXML private TextField ageField;
@@ -31,7 +30,16 @@ public class RetirementCalculatorLayoutController {
         
         @FXML protected void calculate(ActionEvent event) {
             
+           int age = getAge();
+           int retirementAge = getretirementAge();
            
+           int loopSize = retirementAge - age; 
+           
+            for (int i = 0; i < loopSize; i++) {
+                
+                
+                
+            }
             
         }  
         
@@ -43,25 +51,25 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getincomeTaxRate(){
-            
-            int input = Integer.parseInt(incomeTaxRateField.getText()); //numeric string to an int'
-            
-            return input;
-            
-        }
-         
         public int getretirementAge(){
             
-            int input = Integer.parseInt(retirementAgeField.getText()); //numeric string to an int'
+            int input = Integer.parseInt(retirementAgeField.getText());
             
             return input;
             
         }
         
-        public int getcapGainsTxRate(){
+        public double getincomeTaxRate(){
             
-            int input = Integer.parseInt(capGainsTxRateField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(incomeTaxRateField.getText());
+            
+            return input;
+            
+        }
+        
+        public double getcapGainsTxRate(){
+            
+            double input = Double.parseDouble(capGainsTxRateField.getText()); //numeric string to an int'
             
             return input;
             
@@ -69,7 +77,7 @@ public class RetirementCalculatorLayoutController {
         
         public int getpreTaxBalanceField(){
             
-            int input = Integer.parseInt(preTaxBalanceField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(preTaxBalanceField.getText()); //numeric string to an int'
             
             return input;
             
@@ -77,7 +85,7 @@ public class RetirementCalculatorLayoutController {
         
         public int getpostTaxBalance(){
             
-            int input = Integer.parseInt(postTaxBalanceField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(postTaxBalanceField.getText()); //numeric string to an int'
             
             return input;
             
@@ -85,7 +93,7 @@ public class RetirementCalculatorLayoutController {
         
         public int getpreTaxContField(){
             
-            int input = Integer.parseInt(preTaxContField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(preTaxContField.getText()); //numeric string to an int'
             
             return input;
             
@@ -93,7 +101,7 @@ public class RetirementCalculatorLayoutController {
         
         public int getpostTaxContField(){
             
-            int input = Integer.parseInt(postTaxContField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(postTaxContField.getText()); //numeric string to an int'
             
             return input;
             
@@ -101,7 +109,7 @@ public class RetirementCalculatorLayoutController {
         
         public int getrateOfReturnField(){
             
-            int input = Integer.parseInt(rateOfReturnField.getText()); //numeric string to an int'
+            double input = Double.parseDouble(rateOfReturnField.getText()); //numeric string to an int'
             
             return input;
             

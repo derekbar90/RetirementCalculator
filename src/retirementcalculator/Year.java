@@ -12,11 +12,11 @@ package retirementcalculator;
 public class Year {
     
     private final int year;
-    private final int preTaxAmount;
-    private final int postTaxAmount;
-    private final int total;
+    private final double preTaxAmount;
+    private final double postTaxAmount;
+    private final double total;
     
-    public Year(int year, int preTaxAmount, int postTaxAmount, int total){
+    public Year(int year, double preTaxAmount, double postTaxAmount, double total){
     
         this.year = year;
         this.preTaxAmount = preTaxAmount;
