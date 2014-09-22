@@ -11,9 +11,9 @@ package retirementcalculator;
  */
 public class Year {
     
-    private final int year;
-    private final double preTaxAmount;
-    private final double postTaxAmount;
+    protected final int year;
+    protected final double preTaxAmount;
+    protected final double postTaxAmount;
     
     public Year(int year, double preTaxAmount, double postTaxAmount){
     
