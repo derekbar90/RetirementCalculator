@@ -23,10 +23,9 @@ public class Year {
         
     }
     
-    @Override
     public String toString(){
     
-        return year + " " + preTaxAmount + " " + postTaxAmount + "/n";
+        return year + " " + preTaxAmount + " " + postTaxAmount + "\n";
         
     }
     
