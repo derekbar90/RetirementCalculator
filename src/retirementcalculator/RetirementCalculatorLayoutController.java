@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 public class RetirementCalculatorLayoutController {
        
         //ArrayList containing year objects
-        protected ArrayList<Year> retirement = new ArrayList();
+        protected ArrayList<Year> retirement = new ArrayList<Year>();
         protected Year year;
         
         //TextArea Variable    
@@ -43,19 +43,35 @@ public class RetirementCalculatorLayoutController {
                 
                 if(i == 0){
                 
-                    retirement.add(new Year(0, getpreTaxContField(), getpostTaxContField()));
+                    int currentYear = i + 1;
+                    retirement.add(new Year(currentYear, getpreTaxContField(), getpostTaxContField()));
                 
                 }else{
-                
+                    
+                    getPreviousYear();
                     retirement.add(new Year(1,2.0,4.0));
                 
                 }
                 
             }
             
-            calculationWindow.setText(String.valueOf(retirement.size()));
+            //calculationWindow.setText(yearr.toString());
             
         }  
+        
+        public Year getPreviousYear(){
+        
+          int arraysize = retirement.size();
+          
+            if (arraysize != 0) {
+                
+                arraysize -= 1;
+                
+            }
+          
+          return retirement.get(arraysize);
+            
+        }
         
         public double preTaxCalculation(){
         
@@ -143,7 +159,6 @@ public class RetirementCalculatorLayoutController {
             return input;
             
         }
-        
         
     
 }
