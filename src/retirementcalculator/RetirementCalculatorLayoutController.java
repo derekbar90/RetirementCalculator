@@ -1,6 +1,6 @@
-package RetirementCalculator;
+package retirementcalculator;
 
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -12,6 +12,10 @@ import javafx.scene.control.TextField;
  * @author derekbarrera
  */
 public class RetirementCalculatorLayoutController {
+       
+        //ArrayList containing year objects
+        protected ArrayList<Year> retirement = new ArrayList();
+        protected Year year;
         
         //TextArea Variable    
         @FXML private TextArea calculationWindow;
@@ -35,13 +39,38 @@ public class RetirementCalculatorLayoutController {
            
            int loopSize = retirementAge - age; 
            
-            for (int i = 0; i < loopSize; i++) {
+            for (int i = 0; i <= loopSize; i++) {
                 
+                if(i == 0){
                 
+                    retirement.add(new Year(0, getpreTaxContField(), getpostTaxContField()));
+                
+                }else{
+                
+                    retirement.add(new Year(1,2.0,4.0));
+                
+                }
                 
             }
             
+            calculationWindow.setText(String.valueOf(retirement.size()));
+            
         }  
+        
+        public double preTaxCalculation(){
+        
+            double preTax = 0.0;
+            
+             
+            
+            return preTax;
+        }
+        
+        public double postTaxCalcuation(){
+        
+        
+            return .0;
+        }
         
         public int getAge(){
             
@@ -75,7 +104,7 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getpreTaxBalanceField(){
+        public double getpreTaxBalanceField(){
             
             double input = Double.parseDouble(preTaxBalanceField.getText()); //numeric string to an int'
             
@@ -83,7 +112,7 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getpostTaxBalance(){
+        public double getpostTaxBalance(){
             
             double input = Double.parseDouble(postTaxBalanceField.getText()); //numeric string to an int'
             
@@ -91,7 +120,7 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getpreTaxContField(){
+        public double getpreTaxContField(){
             
             double input = Double.parseDouble(preTaxContField.getText()); //numeric string to an int'
             
@@ -99,7 +128,7 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getpostTaxContField(){
+        public double getpostTaxContField(){
             
             double input = Double.parseDouble(postTaxContField.getText()); //numeric string to an int'
             
@@ -107,7 +136,7 @@ public class RetirementCalculatorLayoutController {
             
         }
         
-        public int getrateOfReturnField(){
+        public double getrateOfReturnField(){
             
             double input = Double.parseDouble(rateOfReturnField.getText()); //numeric string to an int'
             

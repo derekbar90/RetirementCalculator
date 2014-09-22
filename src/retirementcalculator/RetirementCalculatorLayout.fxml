@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="500" maxWidth="700" minHeight="500" minWidth="700" prefHeight="500" prefWidth="700" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RetirementCalculator.RetirementCalculatorLayoutController">
+<AnchorPane id="AnchorPane" maxHeight="500" maxWidth="700" minHeight="500" minWidth="700" prefHeight="500" prefWidth="700" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="retirementcalculator.RetirementCalculatorLayoutController">
     <stylesheets>
         <URL value="@fxmlstagelayout.css" />
     </stylesheets>
