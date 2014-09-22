@@ -25,21 +25,21 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="ageField" alignment="CENTER" layoutX="36.0" layoutY="89.0" prefHeight="26.0" prefWidth="122.0" promptText="Age" />
-      <TextField fx:id="incomeTaxRateField" alignment="CENTER" layoutX="167.0" layoutY="89.0" prefHeight="26.0" prefWidth="125.0" promptText="Income Tax Rate" />
-      <TextField fx:id="retirementAgeField" alignment="CENTER" layoutX="36.0" layoutY="127.0" prefHeight="26.0" prefWidth="122.0" promptText="Retirement Age" />
-      <TextField fx:id="capGainsTxRateField" alignment="CENTER" layoutX="168.0" layoutY="127.0" prefHeight="26.0" prefWidth="125.0" promptText="Cap Gains TX Rate" />
-      <TextField fx:id="preTaxBalanceField" alignment="CENTER" layoutX="36.0" layoutY="166.0" prefHeight="26.0" prefWidth="122.0" promptText="Pre Tax Balance" />
-      <TextField fx:id="postTaxBalanceField" alignment="CENTER" layoutX="168.0" layoutY="166.0" prefHeight="26.0" prefWidth="125.0" promptText="Post Tax Balance" />
+      <TextField fx:id="ageField" alignment="CENTER" layoutX="36.0" layoutY="89.0" prefHeight="26.0" prefWidth="122.0" promptText="Age" text="1" />
+      <TextField fx:id="incomeTaxRateField" alignment="CENTER" layoutX="167.0" layoutY="89.0" prefHeight="26.0" prefWidth="125.0" promptText="Income Tax Rate" text=".2" />
+      <TextField fx:id="retirementAgeField" alignment="CENTER" layoutX="36.0" layoutY="127.0" prefHeight="26.0" prefWidth="122.0" promptText="Retirement Age" text="10" />
+      <TextField fx:id="capGainsTxRateField" alignment="CENTER" layoutX="168.0" layoutY="127.0" prefHeight="26.0" prefWidth="125.0" promptText="Cap Gains TX Rate" text=".15" />
+      <TextField fx:id="preTaxBalanceField" alignment="CENTER" layoutX="36.0" layoutY="166.0" prefHeight="26.0" prefWidth="122.0" promptText="Pre Tax Balance" text="100" />
+      <TextField fx:id="postTaxBalanceField" alignment="CENTER" layoutX="168.0" layoutY="166.0" prefHeight="26.0" prefWidth="125.0" promptText="Post Tax Balance" text="100" />
       <Separator layoutX="59.0" layoutY="221.0" prefWidth="200.0" />
       <Label layoutX="47.0" layoutY="37.0" text="Retirement Calculator">
          <font>
             <Font name="Palatino" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="preTaxContField" alignment="CENTER" layoutX="36.0" layoutY="251.0" prefHeight="26.0" prefWidth="122.0" promptText="Pre-Tax Cont." />
-      <TextField fx:id="postTaxContField" alignment="CENTER" layoutX="168.0" layoutY="251.0" prefHeight="26.0" prefWidth="125.0" promptText="Post-Tax Cont." />
-      <TextField fx:id="rateOfReturnField" alignment="CENTER" layoutX="36.0" layoutY="289.0" prefHeight="26.0" prefWidth="257.0" promptText="Rate of Return" />
+      <TextField fx:id="preTaxContField" alignment="CENTER" layoutX="36.0" layoutY="251.0" prefHeight="26.0" prefWidth="122.0" promptText="Pre-Tax Cont." text="10" />
+      <TextField fx:id="postTaxContField" alignment="CENTER" layoutX="168.0" layoutY="251.0" prefHeight="26.0" prefWidth="125.0" promptText="Post-Tax Cont." text="10" />
+      <TextField fx:id="rateOfReturnField" alignment="CENTER" layoutX="36.0" layoutY="289.0" prefHeight="26.0" prefWidth="257.0" promptText="Rate of Return" text=".05" />
       <Separator layoutX="59.0" layoutY="353.0" prefWidth="200.0" />
       <TextArea fx:id="calculationWindow" layoutX="350.0" layoutY="53.0" prefHeight="407.0" prefWidth="322.0" />
    </children>
