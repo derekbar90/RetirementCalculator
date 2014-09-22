@@ -36,26 +36,31 @@ public class RetirementCalculatorLayoutController {
             
            int age = getAge();
            int retirementAge = getretirementAge();
-           
+           int currentYear;
            int loopSize = retirementAge - age; 
            
             for (int i = 0; i <= loopSize; i++) {
                 
                 if(i == 0){
                 
-                    int currentYear = i + 1;
-                    retirement.add(new Year(currentYear, getpreTaxContField(), getpostTaxContField()));
+                    currentYear = i + 1;
+                    retirement.add(new Year(currentYear, getpreTaxBalanceField(), getpostTaxBalance()));
                 
                 }else{
                     
-                    getPreviousYear();
-                    retirement.add(new Year(1,2.0,4.0));
+                    currentYear = i + 1;
+                    
+                    Year prevYear = getPreviousYear();
+                    double preTaxAmnt = preTaxCalculation(prevYear.preTaxAmount);
+                    double postTaxAmnt = postTaxCalcuation(prevYear.postTaxAmount);
+                    
+                    retirement.add(new Year(currentYear, preTaxAmnt, postTaxAmnt));
                 
                 }
                 
             }
             
-            //calculationWindow.setText(yearr.toString());
+            calculationWindow.setText(retirement.toString());
             
         }  
         
@@ -63,26 +68,24 @@ public class RetirementCalculatorLayoutController {
         
           int arraysize = retirement.size();
           
-            if (arraysize != 0) {
+          if (arraysize != 0) {
                 
-                arraysize -= 1;
+            arraysize -= 1;
                 
-            }
-          
+          }
+
           return retirement.get(arraysize);
             
         }
         
-        public double preTaxCalculation(){
+        public double preTaxCalculation(double x){
         
-            double preTax = 0.0;
+            double answer = x * (1 + getrateOfReturnField()) + (12 * getrateOfReturnField());
             
-             
-            
-            return preTax;
+            return answer;
         }
         
-        public double postTaxCalcuation(){
+        public double postTaxCalcuation(double x){
         
         
             return .0;
