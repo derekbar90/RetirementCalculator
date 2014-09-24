@@ -60,7 +60,7 @@ public class RetirementCalculatorLayoutController {
                 
             }
             
-            calculationWindow.setText(retirement.toString());
+            calculationWindow.setText(toString());
             
         }  
         
@@ -79,16 +79,18 @@ public class RetirementCalculatorLayoutController {
         }
         
         public double preTaxCalculation(double x){
-        
-            double answer = x * (1 + getrateOfReturnField()) + (12 * getrateOfReturnField());
+            
+            double answer = x * (1 + getrateOfReturnField()) + (12 * getpreTaxContField());
             
             return answer;
+            
         }
         
         public double postTaxCalcuation(double x){
         
         
             return .0;
+        
         }
         
         public int getAge(){
@@ -163,5 +165,22 @@ public class RetirementCalculatorLayoutController {
             
         }
         
+        @Override
+        public String toString(){
+        
+            String retirementPlan;
+            retirementPlan = "Year" + "\t" + "PreTax Total" + "\t" + "PostTax Total" + "\t" + "Total" + "\n";
+            
+            for(int i = 0; i <= retirement.size() - 1; i++){
+            
+                Year currentYear = retirement.get(i);
+                
+                retirementPlan += currentYear;
+            
+            }
+            
+            return retirementPlan;
+        
+        }
     
 }
