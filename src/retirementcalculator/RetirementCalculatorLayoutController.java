@@ -60,6 +60,7 @@ public class RetirementCalculatorLayoutController {
                 
             }
             
+            calculationWindow.setText(" ");
             calculationWindow.setText(toString());
             
         }  
@@ -80,16 +81,19 @@ public class RetirementCalculatorLayoutController {
         
         public double preTaxCalculation(double x){
             
-            double answer = x * (1 + getrateOfReturnField()) + (12 * getpreTaxContField());
+            double preTax = x * (1 + getrateOfReturnField()) + (12 * getpreTaxContField());
             
-            return answer;
+            return preTax;
             
         }
         
         public double postTaxCalcuation(double x){
         
-        
-            return .0;
+            double postTax = x * getrateOfReturnField();
+            double gains = (postTax - x) * getcapGainsTxRate();
+            double answer = postTax + gains + (12 * getpostTaxContField());
+            
+            return answer;
         
         }
         
