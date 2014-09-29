@@ -3,6 +3,7 @@ package retirementcalculator;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -30,25 +31,47 @@ public class RetirementCalculatorLayoutController {
         @FXML private TextField preTaxContField;
         @FXML private TextField postTaxContField;
         @FXML private TextField rateOfReturnField;
+        @FXML private ProgressIndicator progessIndicatorObject;
 
+        @FXML protected void progess(ActionEvent event){
+        
+            double current = 0.0;
+            current += .112;
+            progessIndicatorObject.setProgress(.112);
+        
+        }
+        
+        @FXML protected void validate(ActionEvent event){
+        
+            
+        
+        }
         
         @FXML protected void calculate(ActionEvent event) {
             
            int age = getAge();
            int retirementAge = getretirementAge();
-           int currentYear;
+           int currentYear = 0;
            int loopSize = retirementAge - age; 
            
             for (int i = 0; i <= loopSize; i++) {
                 
+                currentYear = i + 1;
+                
                 if(i == 0){
                 
-                    currentYear = i + 1;
                     retirement.add(new Year(currentYear, getpreTaxBalanceField(), getpostTaxBalance()));
                 
-                }else{
+                }else if(i == loopSize){
                     
-                    currentYear = i + 1;
+                    Year prevYear = getPreviousYear();
+                    double preTaxAmnt = preTaxIncomeTaxCalculation(prevYear.preTaxAmount);
+                    double postTaxAmnt = postTaxCalcuation(prevYear.postTaxAmount);
+
+                    retirement.add(new Year(currentYear, preTaxAmnt, postTaxAmnt));
+                    
+                }
+                else{   
                     
                     Year prevYear = getPreviousYear();
                     double preTaxAmnt = preTaxCalculation(prevYear.preTaxAmount);
@@ -60,7 +83,6 @@ public class RetirementCalculatorLayoutController {
                 
             }
             
-            calculationWindow.setText(" ");
             calculationWindow.setText(toString());
             
         }  
@@ -79,6 +101,14 @@ public class RetirementCalculatorLayoutController {
             
         }
         
+        public double preTaxIncomeTaxCalculation(double x){
+        
+            double preTax = x - (x * getincomeTaxRate());
+            
+            return preTax;
+        
+        }
+        
         public double preTaxCalculation(double x){
             
             double preTax = x * (1 + getrateOfReturnField()) + (12 * getpreTaxContField());
@@ -88,10 +118,10 @@ public class RetirementCalculatorLayoutController {
         }
         
         public double postTaxCalcuation(double x){
-        
-            double postTax = x * getrateOfReturnField();
-            double gains = (postTax - x) * getcapGainsTxRate();
-            double answer = postTax + gains + (12 * getpostTaxContField());
+                    
+            double postTax = x * (1 + getrateOfReturnField());
+            double gain = (postTax - x) * getcapGainsTxRate();
+            double answer = postTax + gain + (12 * getpostTaxContField());
             
             return answer;
         
@@ -172,7 +202,7 @@ public class RetirementCalculatorLayoutController {
         @Override
         public String toString(){
         
-            String retirementPlan;
+            String retirementPlan = "";
             retirementPlan = "Year" + "\t" + "PreTax Total" + "\t" + "PostTax Total" + "\t" + "Total" + "\n";
             
             for(int i = 0; i <= retirement.size() - 1; i++){
