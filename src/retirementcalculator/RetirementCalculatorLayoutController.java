@@ -1,6 +1,10 @@
 package retirementcalculator;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.charset.Charset;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -48,20 +52,17 @@ public class RetirementCalculatorLayoutController {
         
     }
     
-      @FXML protected void save(ActionEvent event){
+    @FXML protected void save(ActionEvent event){
         
-        File file = fileChooser.showOpenDialog(dialog);
+        File file = fileChooser.showSaveDialog(dialog);
         
-        if (file != null) {
-            
-            
-            
-            
-        }
+        Save save = new Save(Integer.parseInt(ageField.getText()), Double.parseDouble(incomeTaxRateField.getText()), Integer.parseInt(retirementAgeField.getText()), 
+                      Double.parseDouble(capGainsTxRateField.getText()), Double.parseDouble(preTaxBalanceField.getText()), Double.parseDouble(postTaxBalanceField.getText()), Double.parseDouble(preTaxContField.getText()), 
+                      Double.parseDouble(postTaxContField.getText()), Double.parseDouble(rateOfReturnField.getText()), file);
         
     }
       
-          @FXML protected void exit(ActionEvent event) {
+    @FXML protected void exit(ActionEvent event) {
         
         System.exit(0);
         
