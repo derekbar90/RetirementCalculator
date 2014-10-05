@@ -37,17 +37,7 @@ public class Retirement {
     protected ArrayList<Year> retirement = new ArrayList<>();
     protected Year year;
     private String retirementPlan;
-  
-    public boolean validate(){
-    
-               
-    
-        return true;
-    
-    }
-    
-    
-    
+      
     protected String calculate(Retirement retirementObject) {
         
         int currentYear = 0;
