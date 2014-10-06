@@ -107,13 +107,13 @@ public class Retirement {
         
         return preTax;
         
-    }
+    }   
     
     public double postTaxCalcuation(double x){
         
         double postTax = x * (1 + rateOfReturnField);
-        double gain = (postTax - x) * capGainsTxRateField;
-        double answer = postTax + gain + (12 * postTaxContField);
+        double gain = (postTax - x  ) * capGainsTxRateField;
+        double answer = postTax - gain + (12 * postTaxContField);
         
         return answer;
         
