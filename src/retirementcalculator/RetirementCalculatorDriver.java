@@ -7,10 +7,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * RetirementCalulatorDriver to start Scene/Application
  * @author derekbarrera
+ * @version 1.0
  */
+
 public class RetirementCalculatorDriver extends Application {
+    
+    /**
+     * Start method to create and invoke the Stage
+     * 
+     * @param stage Current stage
+     * @throws Exception Catch
+     */
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,6 +35,8 @@ public class RetirementCalculatorDriver extends Application {
     }
 
     /**
+     * Main method to start program
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

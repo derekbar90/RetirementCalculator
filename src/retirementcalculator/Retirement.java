@@ -8,16 +8,35 @@ package retirementcalculator;
 import java.util.ArrayList;
 
 /**
- *
+ * Retirement class to create retirement output and manipulation
+ * 
  * @author derekbarrera
  */
 
 public class Retirement {
     
-    int    retirementAgeField, ageField;
-    double incomeTaxRateField, capGainsTxRateField, preTaxBalanceField, postTaxBalanceField, 
-           preTaxContField, postTaxContField, rateOfReturnField;
+    // Class variables
+    protected int    retirementAgeField, ageField;
+    protected double incomeTaxRateField, capGainsTxRateField, preTaxBalanceField, postTaxBalanceField, 
+                     preTaxContField, postTaxContField, rateOfReturnField;
     
+    protected ArrayList<Year> retirement = new ArrayList<>();
+    protected Year year;
+    private String retirementPlan;
+    
+    /** 
+     * Retirement object creation.
+     * 
+     * @param ageField              current Age
+     * @param incomeTaxRateField    current incomeTaxRateField contents
+     * @param retirementAgeField    current retirementAgeField contents
+     * @param capGainsTxRateField   current capGainsTxRateField contents
+     * @param preTaxBalanceField    current preTaxBalanceField contents
+     * @param postTaxBalanceField   current postTaxBalanceField contents
+     * @param preTaxContField       current preTaxContField contents
+     * @param postTaxContField      current postTaxContField contents
+     * @param rateOfReturnField     current rateOfReturnField contents
+     */
     public Retirement(int ageField, double incomeTaxRateField, int retirementAgeField, 
                       double capGainsTxRateField, double preTaxBalanceField, double postTaxBalanceField, double preTaxContField, 
                       double postTaxContField, double rateOfReturnField){
@@ -32,12 +51,15 @@ public class Retirement {
                       this.postTaxContField = postTaxContField;
                       this.rateOfReturnField = rateOfReturnField;
     }
-    
-    //ArrayList containing year objects
-    protected ArrayList<Year> retirement = new ArrayList<>();
-    protected Year year;
-    private String retirementPlan;
       
+    /**
+     * Reads input from Retirement object, iterating through
+     * calculating the next years balance, while adding Year
+     * objects during each iteration.
+     * 
+     * @param retirementObject Current retirement plan
+     * @return String          Contains fully concatenated retirement plan
+     */
     protected String calculate(Retirement retirementObject) {
         
         int currentYear = 0;
@@ -79,6 +101,11 @@ public class Retirement {
         
     }
     
+    /** 
+     * Grabs the last object in the list
+     * 
+     * @return previous/last Year object
+     */
     public Year getPreviousYear(){
         
         int arraysize = retirement.size();
@@ -93,6 +120,12 @@ public class Retirement {
         
     }
     
+    /**
+     * Calculate pre Tax Income Tax
+     * 
+     * @param  x previous year preTaxBalance
+     * @return   income tax calculation
+     */
     public double preTaxIncomeTaxCalculation(double x){
         
         double preTax = x - (x * incomeTaxRateField);
@@ -101,6 +134,12 @@ public class Retirement {
         
     }
     
+    /**
+     * Calculate pre Tax
+     * 
+     * @param  x previous year preTaxBalance
+     * @return   preTax calculation
+     */
     public double preTaxCalculation(double x){
         
         double preTax = x * (1 + rateOfReturnField) + (12 * preTaxContField);
@@ -109,6 +148,12 @@ public class Retirement {
         
     }   
     
+    /**
+     * Calculate post Tax Balance
+     * 
+     * @param  x previous year postTaxBalance
+     * @return   post Tax calculation
+     */
     public double postTaxCalcuation(double x){
         
         double postTax = x * (1 + rateOfReturnField);
@@ -119,6 +164,13 @@ public class Retirement {
         
     }
 
+    /**
+     * Override for toString() method, providing a 
+     * full print out for the retirement plan.
+     * 
+     * @return current retirement plan 
+     */
+    
     @Override
     public String toString(){
         
