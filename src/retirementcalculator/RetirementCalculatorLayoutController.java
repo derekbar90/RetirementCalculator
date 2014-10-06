@@ -1,10 +1,6 @@
 package retirementcalculator;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.nio.charset.Charset;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -68,14 +64,38 @@ public class RetirementCalculatorLayoutController {
         
     }
     
-    @FXML protected void open(ActionEvent event){
+     @FXML protected void reset(ActionEvent event) {
+        
+            ageField.setText("");
+            incomeTaxRateField.setText("");
+            retirementAgeField.setText("");
+            capGainsTxRateField.setText("");
+            preTaxBalanceField.setText("");
+            postTaxBalanceField.setText("");
+            preTaxContField.setText("");
+            postTaxContField.setText("");
+            rateOfReturnField.setText("");
+        
+    }
+    
+    @FXML protected void open(ActionEvent event) throws ClassNotFoundException{
         
         File file = fileChooser.showOpenDialog(dialog);
-       
+        
         if (file != null) {
             
-            
-            
+            Save loadFile = new Save();
+            loadFile = loadFile.loadSerialed(file);  
+             
+            ageField.setText(String.valueOf(loadFile.ageField));
+            incomeTaxRateField.setText(String.valueOf(loadFile.incomeTaxRateField));
+            retirementAgeField.setText(String.valueOf(loadFile.retirementAgeField));
+            capGainsTxRateField.setText(String.valueOf(loadFile.capGainsTxRateField));
+            preTaxBalanceField.setText(String.valueOf(loadFile.preTaxBalanceField));
+            postTaxBalanceField.setText(String.valueOf(loadFile.postTaxBalanceField));
+            preTaxContField.setText(String.valueOf(loadFile.preTaxContField));
+            postTaxContField.setText(String.valueOf(loadFile.postTaxContField));
+            rateOfReturnField.setText(String.valueOf(loadFile.rateOfReturnField));
             
         }
         
