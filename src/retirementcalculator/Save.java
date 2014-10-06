@@ -6,8 +6,10 @@
 package retirementcalculator;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.charset.Charset;
@@ -22,6 +24,10 @@ public class Save implements Serializable {
     double incomeTaxRateField, capGainsTxRateField, preTaxBalanceField, postTaxBalanceField, 
            preTaxContField, postTaxContField, rateOfReturnField;
     
+    public Save(){
+    
+    }
+    
     public Save(int ageField, double incomeTaxRateField, int retirementAgeField, 
                       double capGainsTxRateField, double preTaxBalanceField, double postTaxBalanceField, double preTaxContField, 
                       double postTaxContField, double rateOfReturnField, File file){
@@ -34,7 +40,7 @@ public class Save implements Serializable {
         this.postTaxBalanceField = postTaxBalanceField;
         this.preTaxContField = preTaxContField;
         this.postTaxContField = postTaxContField;
-        this.rateOfReturnField = rateOfReturnField - 1.0;
+        this.rateOfReturnField = rateOfReturnField;
         
         saveSerializer(file);
   
@@ -52,7 +58,7 @@ public class Save implements Serializable {
         this.postTaxBalanceField = postTaxBalanceField;
         this.preTaxContField = preTaxContField;
         this.postTaxContField = postTaxContField;
-        this.rateOfReturnField = rateOfReturnField - 1.0;
+        this.rateOfReturnField = rateOfReturnField;
   
     }
     
@@ -79,12 +85,29 @@ public class Save implements Serializable {
                     );
                     out.close();
                     fileOut.close();
-                    System.out.printf("Serialized data is saved in" + filePath);
             
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
             }       
+    }
+    
+    public Save loadSerialed(File file) throws ClassNotFoundException{
+    
+        Save input;
+        Save output = null;
+        
+        try (FileInputStream fileIn = new FileInputStream(file)) {
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            input = (Save)in.readObject();
+            output = new Save(input.ageField, input.incomeTaxRateField, input.retirementAgeField, 
+                                         input.capGainsTxRateField, input.preTaxBalanceField, input.postTaxBalanceField, input.preTaxContField, 
+                                         input.postTaxContField, input.rateOfReturnField);
+            in.close();
+            fileIn.close();
+        }catch(IOException e){}
+    
+        return output;
     }
     
 }
