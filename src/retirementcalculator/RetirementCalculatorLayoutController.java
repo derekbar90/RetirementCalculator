@@ -3,8 +3,7 @@ package retirementcalculator;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -23,38 +22,51 @@ public class RetirementCalculatorLayoutController {
     //Text input variables
     @FXML private TextField ageField, incomeTaxRateField, retirementAgeField, capGainsTxRateField, preTaxBalanceField,
                             postTaxBalanceField, preTaxContField, postTaxContField, rateOfReturnField;
-    @FXML private ProgressIndicator progessIndicatorObject = new ProgressIndicator();
-    @FXML private LineChart<Integer,Integer> lineChart;
-    final FileChooser fileChooser = new FileChooser();
+    @FXML private Button calculateButton;
+    
+          private FileChooser fileChooser = new FileChooser();
     
     //Dialog Box
     Stage dialog = new Stage();
 
     @FXML protected void calculate(ActionEvent event) {
         
-         Retirement retirement = new Retirement(Integer.parseInt(ageField.getText()), Double.parseDouble(incomeTaxRateField.getText()), Integer.parseInt(retirementAgeField.getText()), 
-                      Double.parseDouble(capGainsTxRateField.getText()), Double.parseDouble(preTaxBalanceField.getText()), Double.parseDouble(postTaxBalanceField.getText()), Double.parseDouble(preTaxContField.getText()), 
-                      Double.parseDouble(postTaxContField.getText()), Double.parseDouble(rateOfReturnField.getText()));
-
-        calculationWindow.setText(retirement.calculate(retirement));
-    
-    }
-    
-    @FXML protected void progess(){
+        try{
+           if(Integer.parseInt(ageField.getText()) < Integer.parseInt(retirementAgeField.getText()) && Integer.parseInt(ageField.getText()) >= 0 && Integer.parseInt(retirementAgeField.getText()) >= 0){
+            Retirement retirement = new Retirement(Integer.parseInt(ageField.getText()), Double.parseDouble(incomeTaxRateField.getText()), Integer.parseInt(retirementAgeField.getText()), 
+                                                   Double.parseDouble(capGainsTxRateField.getText()), Double.parseDouble(preTaxBalanceField.getText()), Double.parseDouble(postTaxBalanceField.getText()), Double.parseDouble(preTaxContField.getText()), 
+                                                   Double.parseDouble(postTaxContField.getText()), Double.parseDouble(rateOfReturnField.getText()));
+           
+            calculationWindow.setText(retirement.calculate(retirement));}
+           else{
+               
+               calculateButton.setDisable(true);
+               
+           }
+        }catch(NumberFormatException e){
         
-        double current = 0.0;
-        current += .112;
-       //progessIndicatorObject.setProgress(.112);
-        
+            calculateButton.setDisable(true);   
+            
+        }
     }
     
     @FXML protected void save(ActionEvent event){
         
-        File file = fileChooser.showSaveDialog(dialog);
+        try{
+            if(initialize()){
+            
+                File file = fileChooser.showSaveDialog(dialog);
         
-        Save save = new Save(Integer.parseInt(ageField.getText()), Double.parseDouble(incomeTaxRateField.getText()), Integer.parseInt(retirementAgeField.getText()), 
-                      Double.parseDouble(capGainsTxRateField.getText()), Double.parseDouble(preTaxBalanceField.getText()), Double.parseDouble(postTaxBalanceField.getText()), Double.parseDouble(preTaxContField.getText()), 
-                      Double.parseDouble(postTaxContField.getText()), Double.parseDouble(rateOfReturnField.getText()), file);
+            Save save = new Save(Integer.parseInt(ageField.getText()), Double.parseDouble(incomeTaxRateField.getText()), Integer.parseInt(retirementAgeField.getText()), 
+                Double.parseDouble(capGainsTxRateField.getText()), Double.parseDouble(preTaxBalanceField.getText()), Double.parseDouble(postTaxBalanceField.getText()), 
+                Double.parseDouble(preTaxContField.getText()), Double.parseDouble(postTaxContField.getText()), Double.parseDouble(rateOfReturnField.getText()), file);
+            
+            }
+       
+        }catch(NullPointerException e){
+        
+        
+        }
         
     }
       
@@ -101,21 +113,210 @@ public class RetirementCalculatorLayoutController {
         
     }
     
-    public void initialize(){
-    
-        ageField.textProperty().addListener((observable, oldValue, newValue) -> {
-    
-           try{
-               ageField.getText();
-               calculationWindow.setText("GO YOU!");
-           }
-           catch(NumberFormatException e){
-               
-               calculationWindow.setText("NOPE");
-           
-           }
-    
-        });
-    
+    public boolean initialize(){
+        
+        boolean bool = false;
+        try{
+            
+            ageValidation();
+            incomeTaxRateFieldValidation();
+            retirementAgeFieldValidation();
+            capGainsTxRateFieldValidation();
+            preTaxBalanceFieldValidation();
+            postTaxBalanceFieldValidation();
+            preTaxContFieldValidation();
+            postTaxContFieldValidation();
+            rateOfReturnFieldValidation();
+            
+            bool = true;    
+       
+        }catch(NumberFormatException e){
+            
+        }
+        
+        return bool;
+        
     }
+    
+    private void ageValidation(){
+
+        ageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                
+                if(Integer.parseInt(ageField.getText()) < Integer.parseInt(retirementAgeField.getText()) && Integer.parseInt(ageField.getText()) >= 0 && Integer.parseInt(retirementAgeField.getText()) >= 0){
+                    
+                    Integer.parseInt(ageField.getText());
+                    calculateButton.setDisable(false);
+                
+                }else{
+                
+                    calculateButton.setDisable(true);
+                
+                }
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);
+            }
+            
+        });
+        
+    }
+    
+    private void incomeTaxRateFieldValidation(){
+
+        incomeTaxRateField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(incomeTaxRateField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+        
+        });
+        
+    }
+    
+    private void retirementAgeFieldValidation(){
+
+        retirementAgeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                
+                if(Integer.parseInt(ageField.getText()) > Integer.parseInt(retirementAgeField.getText()) && Integer.parseInt(ageField.getText()) >= 0 && Integer.parseInt(retirementAgeField.getText()) >= 0){
+                    
+                    calculateButton.setDisable(true);
+                
+                }else{
+                
+                    calculateButton.setDisable(false);
+                
+                }
+                
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void capGainsTxRateFieldValidation(){
+
+        capGainsTxRateField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(capGainsTxRateField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void preTaxBalanceFieldValidation(){
+
+        preTaxBalanceField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(preTaxBalanceField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void postTaxBalanceFieldValidation(){
+
+        postTaxBalanceField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(postTaxBalanceField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void preTaxContFieldValidation(){
+
+        preTaxContField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(preTaxContField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void postTaxContFieldValidation(){
+
+        postTaxContField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(postTaxContField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    private void rateOfReturnFieldValidation(){
+
+        rateOfReturnField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            try{
+                Double.parseDouble(rateOfReturnField.getText());
+                calculateButton.setDisable(false);
+                
+            }
+            catch(NumberFormatException e){
+
+                calculateButton.setDisable(true);                
+            }
+            
+        });
+        
+    }
+    
+    
 }
