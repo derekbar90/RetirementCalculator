@@ -24,7 +24,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Reset" />
+              <MenuItem mnemonicParsing="false" onAction="#reset" text="Reset" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -34,33 +34,29 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="rateOfReturnField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="289.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="257.0" promptText="Rate of Return" text=".05" />
-      <TextField fx:id="postTaxBalanceField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="166.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Post Tax Balance" text="100" />
-      <Button fx:id="calculateButton" layoutX="89.0" layoutY="401.0" mnemonicParsing="false" onAction="#calculate" prefHeight="28.0" prefWidth="201.0" text="Calculate">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TextField fx:id="retirementAgeField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="127.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Retirement Age" text="10" />
-      <TextField fx:id="postTaxContField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="251.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Post-Tax Cont." text="10" />
+      <TextField fx:id="ageField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="89.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Age" />
+      <TextField fx:id="retirementAgeField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="127.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Retirement Age" />
+      <TextField fx:id="incomeTaxRateField" alignment="BASELINE_LEFT" layoutX="167.0" layoutY="89.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Income Tax Rate" />
+      <TextField fx:id="capGainsTxRateField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="127.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Cap Gains TX Rate" />
+      <TextField fx:id="preTaxBalanceField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="166.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Pre Tax Balance" />
+      <TextField fx:id="postTaxBalanceField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="166.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Post Tax Balance" />
+      <TextField fx:id="preTaxContField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="251.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Pre-Tax Cont." />
+      <TextField fx:id="postTaxContField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="251.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Post-Tax Cont." />
+      <TextField fx:id="rateOfReturnField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="289.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="257.0" promptText="Rate of Return" />
       <Pane layoutX="-3.0" layoutY="-10.0" opacity="0.87" prefHeight="510.0" prefWidth="703.0" style="-fx-background-color: black;" visible="false" />
-      <TextField fx:id="incomeTaxRateField" alignment="BASELINE_LEFT" layoutX="167.0" layoutY="89.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Income Tax Rate" text=".2" />
       <Separator layoutX="59.0" layoutY="221.0" prefWidth="200.0" />
-      <Button fx:id="resetButton" layoutX="34.0" layoutY="357.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="257.0" text="Reset">
+      <Button fx:id="resetButton" layoutX="34.0" layoutY="357.0" mnemonicParsing="false" onAction="#reset" prefHeight="28.0" prefWidth="257.0" text="Reset">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="ageField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="89.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Age" text="1" />
       <Label layoutX="47.0" layoutY="37.0" text="Retirement Calculator">
          <font>
             <Font name="Palatino" size="24.0" />
          </font>
       </Label>
       <TextArea fx:id="calculationWindow" layoutX="332.0" layoutY="55.0" prefHeight="408.0" prefWidth="328.0" />
-      <TextField fx:id="capGainsTxRateField" alignment="BASELINE_LEFT" layoutX="168.0" layoutY="127.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="125.0" promptText="Cap Gains TX Rate" text=".15" />
       <Separator layoutX="59.0" layoutY="341.0" prefWidth="200.0" />
-      <TextField fx:id="preTaxContField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="251.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Pre-Tax Cont." text="10" />
       <LineChart fx:id="lineGraph" disable="true" layoutX="60.0" layoutY="45.0" legendVisible="false" prefHeight="402.0" prefWidth="577.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="45.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xAxis" />
@@ -71,11 +67,15 @@
          
       </LineChart>
       <ProgressIndicator fx:id="progessIndicator" layoutX="43.0" layoutY="398.0" prefHeight="41.0" prefWidth="29.0" progress="0.0" />
+      <Button fx:id="calculateButton" layoutX="89.0" layoutY="401.0" mnemonicParsing="false" onAction="#calculate" prefHeight="28.0" prefWidth="201.0" text="Calculate">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
       <Button fx:id="resetButton1" layoutX="34.0" layoutY="448.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="257.0" text="Graph">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="preTaxBalanceField" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="166.0" onInputMethodTextChanged="#progess" prefHeight="26.0" prefWidth="122.0" promptText="Pre Tax Balance" text="100" />
    </children>
 </AnchorPane>
