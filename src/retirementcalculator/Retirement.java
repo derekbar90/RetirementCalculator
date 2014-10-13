@@ -77,7 +77,7 @@ public class Retirement {
             }else if(i == loopSize){
                 
                 Year prevYear = getPreviousYear();
-                double preTaxAmnt = preTaxIncomeTaxCalculation(prevYear.preTaxAmount);
+                double preTaxAmnt = preTaxIncomeTaxCalculation(preTaxCalculation(prevYear.preTaxAmount));
                 double postTaxAmnt = postTaxCalcuation(prevYear.postTaxAmount);
                 
                 retirement.add(new Year(currentYear, preTaxAmnt, postTaxAmnt));
