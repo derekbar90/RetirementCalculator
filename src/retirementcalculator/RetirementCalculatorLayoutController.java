@@ -37,7 +37,7 @@ public class RetirementCalculatorLayoutController {
      * 
      * @param event EventListener
      */
-    @FXML private void calculate(ActionEvent event) {
+     @FXML private void calculate(ActionEvent event) {
         
         try{
            
